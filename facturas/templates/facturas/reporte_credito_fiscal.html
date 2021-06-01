@@ -1,0 +1,92 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Crédito fiscal</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'Home' %}">Inicio</a></li>
+              <li class="breadcrumb-item active">Crédito fiscal</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+
+
+        <!-- form start -->
+        <form action="/facturas/credito-fiscal" method="POST" role="form">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- select -->
+              <div class="form-group">
+                <div class="input-group">
+                  <select name="prd" class="custom-select" required>
+                    <option value="">---Seleccionar periodo---</option>
+                    {% for periodo in periodos %}
+                    <option value="{{periodo.periodo}}" {% if prd_actual == periodo.periodo %} selected {% endif %}>{{periodo.periodo}}</option>
+                    {% endfor %}
+                  </select>
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Facturas</h3>
+              </div><!-- /.card-header -->
+
+              
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-hover table-head-fixed">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Total</th>
+                      <th>Crédito fiscal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Total ventas</td>
+                      <td>{{ facturas_total_ventas.facturas_total }}</td>
+                      <td>{{ facturas_credito_ventas.credito_fiscal }}</td>
+                    </tr>
+                    <tr>
+                      <td>Total compras</td>
+                      <td>{{ facturas_total_compras.facturas_total }}</td>
+                      <td>{{ facturas_credito_compras.credito_fiscal }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!-- /.card-body -->
+
+              
+            </div><!-- /.card -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+{% endblock %}

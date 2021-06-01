@@ -1,0 +1,63 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Total libros</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'Home' %}">Inicio</a></li>
+              <li class="breadcrumb-item active">Total libros</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Libros</h3>
+              </div><!-- /.card-header -->
+
+              
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-hover table-head-fixed">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Resto compra</th>
+                      <th>Resto venta</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Cantidad</td>
+                      <td>{{ resto_libros_compra }}</td>
+                      <td>{{ resto_libros_venta }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!-- /.card-body -->
+
+              
+            </div><!-- /.card -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+{% endblock %}
